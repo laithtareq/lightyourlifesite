@@ -1,0 +1,39 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+
+    {% if user.profile.isTeacher %}
+        <div class="col-lg-12 btn btn-primary text-center mb-1 ml-3 mr-3">اجوبة الطالب : {{ Student_Name }} </div>
+        <div class="col-lg-12 mr-3 ml-3">
+    <div class="row">
+        <table>
+            <tr>
+                <td> اسم الطالب </td>
+                <td> {{Answer_Key.Student_User.username}} </td>
+            </tr>
+            <tr>
+                <td> جواب الطالب </td>
+                <td> {{Answer_Key.Answer}} </td>
+            </tr>
+            <tr>
+                <td> العلامة  </td>
+                <td> {{Answer_Key.Mark }}</td>
+            </tr>
+            <tr>
+                <td> المحاولات  </td>
+                <td> {{Answer_Key.Trials}} </td>
+            </tr>
+            <tr>
+                <td> الاجابة النموذجية  </td>
+                <td> {{Answer_Key.Homework_Key.Sugested_answer}} </td>
+            </tr>
+        </table>   
+    </div>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="number" name="Mark" id="Mark" placeholder="ضع علامة الطالب هنا" value="{{ maxMark }}"><br>
+            <input type="submit" value="تعديل العلامة">
+        </form>
+    </div>
+{% endif %}
+{% endblock content %}

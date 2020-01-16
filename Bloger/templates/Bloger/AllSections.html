@@ -1,0 +1,36 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+{% if user.profile.isAdmin %}
+<div class="col-lg-12 btn btn-primary text-center mb-1 mr-3 ml-3"> جميع الشعب </div>
+    <div class="col-lg-12 mr-3 ml-3">
+    <div class="row">
+
+            <table class="col-12">
+            <th> اسم المادة </th>
+                <th> رقم الشعبة </th>
+                 <th> المدرس </th>
+                 <th> القاعة </th>
+                 <th> الايام </th>
+                 <th> من الساعة </th>
+                <th> الى الساعة </th>
+                <th> تاريخ بداية الدورة </th>
+            <th> تاريخ نهاية الدورة </th>
+                {% for sec in sections %}
+                <tr>
+                   <td> <a href="{% url 'EditSection' sec.id %}">{{ sec.Material_Key.name }}</a> </td>
+                   <td> <a href="{% url 'EditSection' sec.id %}"> شعبة {{ sec.Section_Num }}</a> </td>
+                   <td> <a href="{% url 'EditSection' sec.id %}"> {{ sec.Teacher_Name.username }}</a> </td>
+                   <td> <a href="{% url 'EditSection' sec.id %}"> القاعة {{ sec.Section_Class }}</a> </td>
+                   <td> <a href="{% url 'EditSection' sec.id %}"> {{ sec.Days }}</a> </td>
+                   <td> <a href="{% url 'EditSection' sec.id %}"> {{ sec.start_time}}</a> </td>
+                   <td> <a href="{% url 'EditSection' sec.id %}"> {{ sec.end_time}}</a> </td>
+                   <td> <a href="{% url 'EditSection' sec.id %}"> {{ sec.start_date}}</a> </td>
+                   <td> <a href="{% url 'EditSection' sec.id %}"> {{ sec.end_date}}</a> </td>
+                </tr>
+                {% endfor %}
+            </table>
+    </div>
+    </div>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+
+    {% if user.profile.isTeacher %}
+        <div class="col-lg-12 mr-3 ml-3">
+    <div class="row">
+        <table class="col-12">
+        <th> اسم الطالب </th>
+        <th> عدد الاجوبة </th>
+        <th> العلامة </th>
+        <th> تاريخ آخر اجابة </th>
+                 {% for answer in Answers %}
+            <tr>
+        <td>
+            <a href="{% url 'answer_detail' answer.id %}">{{ answer.Student_User.username }}</a>
+         </td>
+        <td>
+            <a href="{% url 'answer_detail' answer.id %}">{{ answer.Trials }}</a>
+         </td>
+            <td>
+            <a href="{% url 'answer_detail' answer.id %}">{{ answer.Mark }}</a>
+         </td>
+            <td>
+            <a href="{% url 'answer_detail' answer.id %}">{{ answer.post_date }}</a>
+         </td>
+        </tr>{% endfor %}
+
+        </table>
+    </div>
+        </div>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+{% if user.profile.isAdmin %}
+    <div class="col-lg-12 mr-3 ml-3">
+    <div class="row">
+<div class="col-lg-12 btn btn-primary text-center mb-1">سجل الحضور لمادة {{ Mat_sec }} </div>
+            <table class="col-12">
+        <th> اسم الطالب </th>
+        <th> رقم الهاتف </th>
+        <th> الايميل </th>
+        <th> عدد مرات الحضور </th>
+         {% for student in Students %}
+            <tr>
+            <td> <a href="{% url 'Student_Presence' student.Student_User.username student.Section_Key.id %}">  {{ student.Student_User.first_name }} {{ student.Student_User.last_name }}</a> </td>
+            <td> <a href="{% url 'Student_Presence' student.Student_User.username student.Section_Key.id %}">  {{ student.Student_User.profile.phone }}</a> </td>
+            <td> <a href="{% url 'Student_Presence' student.Student_User.username student.Section_Key.id %}">  {{ student.Student_User.profile.email }}</a> </td>
+            <td> <a href="{% url 'Student_Presence' student.Student_User.username student.Section_Key.id %}">  {{ student.Booking_Key.Presence_times }}</a> </td>
+        </tr>{% endfor %}
+
+        </table>
+
+    </div>
+    </div>
+{% endif %}
+
+{% endblock content %}

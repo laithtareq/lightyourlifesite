@@ -1,0 +1,87 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+
+    {% if user.profile.isAdmin %}
+
+<div class="col-lg-12 mr-3 ml-3">
+    <div class="row">
+<table class="col-12">
+        <th> اسم المادة </th>
+        <th> username </th>
+        <th> اسم المدرس </th>
+        <th> الايام </th>
+        <th> وقت بداية الحصة </th>
+        <th> وقت نهاية الحصة </th>
+        <th> رقم تلفون المدرس </th>
+         {% for teacher in Teachers %}
+            <tr>
+            <td>
+         {{ teacher.Material_Key.name }}
+         </td>
+        <td class="section" id="{{ teacher.id }}" onclick="document.getElementById('teacher_username').value = document.getElementById('{{ teacher.id }}').innerText;
+        document.getElementById('Days').value = document.getElementById('Days{{ teacher.id }}').innerText;
+        document.getElementById('start_time').value = document.getElementById('start_time{{ teacher.id }}').innerText;
+        document.getElementById('end_time').value = document.getElementById('end_time{{ teacher.id }}').innerText;">
+         {{ teacher.Free_Key.Teacher_Name.username}}
+         </td>
+         <td class="section" id="Name{{ teacher.id }}" onclick="document.getElementById('teacher_username').value = document.getElementById('{{ teacher.id }}').innerText;
+                document.getElementById('Days').value = document.getElementById('Days{{ teacher.id }}').innerText;
+                document.getElementById('start_time').value = document.getElementById('start_time{{ teacher.id }}').innerText;
+                document.getElementById('end_time').value = document.getElementById('end_time{{ teacher.id }}').innerText;" >
+         {{ teacher.Free_Key.Teacher_Name.first_name }} {{ teacher.Free_Key.Teacher_Name.last_name }}
+         </td>
+         <td class="section" id="Days{{ teacher.id }}" onclick="document.getElementById('teacher_username').value = document.getElementById('{{ teacher.id }}').innerText;
+                document.getElementById('Days').value = document.getElementById('Days{{ teacher.id }}').innerText;
+                document.getElementById('start_time').value = document.getElementById('start_time{{ teacher.id }}').innerText;
+                document.getElementById('end_time').value = document.getElementById('end_time{{ teacher.id }}').innerText;" >
+         {{ teacher.Days }}
+         </td>
+            <td class="section" id="start_time{{ teacher.id }}" onclick="document.getElementById('teacher_username').value = document.getElementById('{{ teacher.id }}').innerText;
+                document.getElementById('Days').value = document.getElementById('Days{{ teacher.id }}').innerText;
+                document.getElementById('start_time').value = document.getElementById('start_time{{ teacher.id }}').innerText;
+                document.getElementById('end_time').value = document.getElementById('end_time{{ teacher.id }}').innerText;" >
+         {{ teacher.start_time }}
+         </td>
+            <td class="section" id="end_time{{ teacher.id }}" onclick="document.getElementById('teacher_username').value = document.getElementById('{{ teacher.id }}').innerText;
+                document.getElementById('Days').value = document.getElementById('Days{{ teacher.id }}').innerText;
+                document.getElementById('start_time').value = document.getElementById('start_time{{ teacher.id }}').innerText;
+                document.getElementById('end_time').value = document.getElementById('end_time{{ teacher.id }}').innerText;">
+         {{ teacher.end_time }}
+         </td>
+         <td class="section" id="end_time{{ teacher.id }}" onclick="document.getElementById('teacher_username').value = document.getElementById('{{ teacher.id }}').innerText;
+                document.getElementById('Days').value = document.getElementById('Days{{ teacher.id }}').innerText;
+                document.getElementById('start_time').value = document.getElementById('start_time{{ teacher.id }}').innerText;
+                document.getElementById('end_time').value = document.getElementById('end_time{{ teacher.id }}').innerText;">
+         {{ teacher.Free_Key.Teacher_Name.profile.phone }}
+         </td>
+        </tr>{% endfor %}
+        </table>
+    </div>
+    </div>
+
+    <div class="card col-lg-4 mr-3 ml-3 " style="width: 18rem;">
+<div class="col-lg-12 btn btn-primary text-center mb-1"> يرجى تعبئة البيانات الخاصة بالشعبة رقم {{ maxValue }} </div>
+        <form method="POST" name="section_info">
+        {% csrf_token %}
+
+         <label for="teacher_username"> اسم المستخدم الخاص بالمدرس </label> <br>
+         <input type="text" name="teacher_username" id="teacher_username" required> <br>
+            <label for="Days"> ايام الحصص </label> <br>
+         <input type="text" name="Days" id="Days" required> <br>
+            <label for="Section_Class"> رقم القاعة </label> <br>
+         <input type="number" name="Section_Class" id="Section_Class" required> <br>
+            <label for="start_time"> وقت بداية الحصة </label> <br>
+         <input type="time" name="start_time" id="start_time" required> <br>
+            <label for="end_time"> وقت نهاية الحصة </label> <br>
+         <input type="time" name="end_time" id="end_time" required> <br>
+            <label for="start_date"> تاريخ بداية الدورة </label> <br>
+         <input type="date" name="start_date" id="start_date" required> <br>
+            <label for="end_date"> تاريخ نهاية الدورة </label> <br>
+         <input type="date" name="end_date" id="end_date" required> <br>
+            <input type="submit" value="موافق">
+    </form>
+    </div>
+    {% endif %}
+
+{% endblock content %}

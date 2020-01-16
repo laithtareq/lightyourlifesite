@@ -1,0 +1,51 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+{% if user.profile.isAdmin %}
+    <div class="col-lg-12 mr-3 ml-3">
+    <div class="row">
+<div class="col-lg-12 btn btn-primary text-center mb-1">سجل حضور الطالب {{ Student_Name }} </div>
+    <table class="col-12">
+            <tr>
+        <td class="section">
+         الاسم الاول
+         </td>
+         <td class="section">
+         {{ Student.first_name }}
+         </td>
+        </tr>
+        <tr>
+        <td class="section">
+         الاسم الاخير
+         </td>
+         <td class="section">
+         {{ Student.last_name }}
+         </td>
+        </tr>
+        <tr>
+        <td class="section">
+         رقم التلفون
+         </td>
+         <td class="section">
+         {{ Student.profile.phone }}
+         </td>
+        </tr>
+
+        </table>
+            <table class="col-12">
+        <th> تاريخ الحضور </th>
+         {% for student in Students %}
+            <tr>
+        <td class="section">
+         {{ student.Presence_Date }}
+         </td>
+
+        </tr>{% endfor %}
+
+        </table>
+
+    </div>
+    </div>
+{% endif %}
+
+{% endblock content %}

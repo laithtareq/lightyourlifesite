@@ -1,0 +1,51 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+
+    {% if user.profile.isTeacher %}
+        <div class="col-lg-12 btn btn-primary text-center mb-1 mr-3 ml-3">جدول المواعيد المقترحة</div>
+    <div class="col-lg-12 mr-3 ml-3">
+    <div class="row">
+        <table class="col-12  mb-3">
+        <th> اسم المادة </th>
+        <th> الايام </th>
+        <th> وقت بداية الحصة </th>
+        <th> وقت نهاية الحصة </th>
+        <th> مسح الموعد </th>
+                 {% for data in freeDate %}
+            <tr>
+        <td>
+            {{ data.Free_Key.Material_Key.name }}
+         </td>
+        <td>
+            {{ data.Days }}
+         </td>
+            <td>
+            {{ data.start_time }}
+         </td>
+            <td>
+            {{ data.end_time }}
+         </td>
+            <td> <a href="{% url 'delete_free' data.id %}"> مسح </a> </td>
+
+        </tr>{% endfor %}
+
+        </table>
+
+        <div class="card col-lg-4 mr-3 ml-3" style="width: 18rem;">
+<div class="col-lg-12 btn btn-primary text-center mb-1">اضافة موعد جديد </div>
+        <form method="POST">
+            {% csrf_token %}
+         <label for="Days"> ايام الحصص </label> <br>
+         <input type="text" name="Days" id="Days" required> <br>
+            <label for="start_time"> وقت بداية الحصة </label> <br>
+         <input type="time" name="start_time" id="start_time" required> <br>
+            <label for="end_time"> وقت نهاية الحصة </label> <br>
+         <input type="time" name="end_time" id="end_time" required> <br>
+            <input type="submit" value="موافق">
+        </form>
+        </div>
+    </div>
+    </div>
+{% endif %}
+{% endblock content %}

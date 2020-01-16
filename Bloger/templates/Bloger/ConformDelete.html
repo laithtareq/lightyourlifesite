@@ -1,0 +1,51 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+    {% if user.profile.isAdmin %}
+<div class="col-lg-12 btn btn-primary text-center mb-1 mr-3 ml-3"> تأكيد عملية المسح </div>
+<div class="col-lg-12 mr-3">
+    <div class="row">
+        {% if Dep_Will_delete %}
+            <table class="col-12">
+        <th> الاقسام التي سوف يتم مسحها </th>
+         {% for Dep in Dep_Will_delete %}
+            <tr>
+        <td>
+         {{ Dep.name }}
+         </td>
+        </tr>{% endfor %}
+        </table>
+    {% endif %}
+    {% if Mat_Will_delete %}
+            <table class="col-12">
+        <th> المواد التي سوف يتم مسحها </th>
+         {% for Mat in Mat_Will_delete %}
+            <tr>
+        <td>
+         {{ Mat.name }}
+         </td>
+        </tr>
+         {% endfor %}
+        </table>
+    {% endif %}
+    {% if St_Will_delete %}
+            <table class="col-12">
+        <th> الطلاب المسجلين ضمن المواد التي سوف يتم مسحها </th>
+            <th> المادة </th>
+         {% for St in St_Will_delete %}
+            <tr>
+        <td>
+         {{ St.Student_User }}
+         </td>
+            <td>
+         {{ St.Material_Key }}
+         </td>
+        </tr>
+         {% endfor %}
+        </table>
+    {% endif %}
+    </div>
+    </div>
+    <a href="{% url 'DeleteThing' delete Thing_id %}"><button type="button" class="btn btn-danger">مسح</button></a>
+    {% endif %}
+{% endblock content %}

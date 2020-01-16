@@ -1,0 +1,18 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+    {% if user.profile.isAdmin %}
+    <div class="col-lg-12 btn btn-primary text-center mb-1 mr-3"> اضافة جديدة </div>
+    <div class="col-lg-4 mr-3">
+        <form method="POST">
+        {% csrf_token %}
+        <label for="name">{{ wanted }}</label> <br>
+            <input type="text" name="name" id="name"><br>
+
+            <input type="submit" value="اضافة">
+    </form>
+    </div>
+    {% else %}
+    <div class="col-lg-12 btn btn-primary text-center mb-1 mr-3"> ليس لديك الصلاحية بالتعديل </div>
+    {% endif %}
+{% endblock content %}

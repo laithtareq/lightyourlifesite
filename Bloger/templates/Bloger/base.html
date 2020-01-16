@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/logo.jpg' %}">
+  <!-- Custom fonts for this template-->
+  <link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link rel="stylesheet" href="{% static 'css/sb-admin-2.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}">
+    {% if title %}
+        <title>{{ title }}</title>
+     {% else %}
+        <title>No Title</title>
+    {% endif %}
+
+</head>
+<style>
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
+</head>
+<body>
+
+
+
+
+
+
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+<body>
+<div class=" d-block d-sm-none col-sm-12 ">
+  <button onclick="myFunction()" class="dropbtn col-sm-12 text-right"><i class="fas fa-bars"></i></button>
+  <div id="myDropdown" class="dropdown-content col-sm-12">
+    <a href="{% url 'home' %}">الصفحة الرئيسية</a>
+    {% if user.is_authenticated %}
+        {% if user.profile.isAdmin %}
+    <a href="{% url 'AllMaterials' %}">الطلاب المسجلين</a>
+        {% endif %}
+    <a href="{% url 'profile' %}">الصفحة الشخصية</a>
+    <a href="{% url 'logout' %}"> تسجيل الخروج</a>
+    {% else %}
+    <a href="{% url 'register' %}">انشاء حساب جديد</a>
+    <a href="{% url 'login' %}">تسجيل الدخول</a>
+    {% endif %}
+  </div>
+</div>
+<ul class="d-none d-sm-block">
+    <li><a href="{% url 'home' %}">الصفحة الرئيسية</a> </li>
+    {% if user.is_authenticated %}
+        {% if user.profile.isAdmin %}
+    <li><a href="{% url 'AllMaterials' %}">الطلاب المسجلين</a> </li>
+        {% endif %}
+    <li><a href="{% url 'profile' %}">الصفحة الشخصية</a> </li>
+    <li><a href="{% url 'logout' %}"> تسجيل الخروج</a> </li>
+    {% else %}
+    <li><a href="{% url 'register' %}">انشاء حساب جديد</a> </li>
+    <li><a href="{% url 'login' %}">تسجيل الدخول</a> </li>
+
+    {% endif %}
+</ul>
+<div class="col-lg-12">
+<div class="row">
+    <div class="col-lg-8">
+    <div class="row">
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="col-lg-12 btn btn-success text-center mb-1 mr-3 ml-3"> {{ message }}</div>
+    {% endfor %}
+    {% endif %}
+        {% block content %}
+    {% endblock content %}
+    </div>
+</div>
+
+        <div class="col-lg-4">
+    <div class="sidebarblock mr-5"> اعلانات <br>
+      {% include 'Bloger/AllAds.html' %}
+    </div>
+
+</div>
+
+    </div>
+</div>
+
+<script src="{% static 'js/all.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/slim.min.js' %}"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+  <!-- Page level plugins -->
+  <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+  <!-- Page level custom scripts -->
+  <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+  <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+  <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+</body>
+</html>

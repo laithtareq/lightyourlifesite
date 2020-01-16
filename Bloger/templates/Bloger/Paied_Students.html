@@ -1,0 +1,37 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+{% if user.profile.isAdmin %}
+<div class="col-lg-12 btn btn-primary text-center mb-1 mr-3 ml-3"> الطلاب المحاسبين </div>
+    <div class="col-lg-12 mr-3 ml-3">
+    <div class="row">
+      
+            <table class="col-12">
+        <th> اسم الطالب </th>
+            <th> رقم الهاتف </th>
+            <th> الايميل\الفيسبوك </th>
+            <th> عدد المواد المحاسب عليها </th>
+            
+         {% for student in Students %}
+            <tr>
+        <td>
+         <a href="#"> {{ student.first_name }} {{ student.last_name }}</a>
+         </td>
+            <td>
+         <a href="#"> {{ student.phone }}</a>
+         </td>
+            <td>
+         <a href="#"> {{ student.email }}</a>
+         </td>
+         <td>
+            <a href="#"> {{ student.Booked_Count }}</a>
+            </td>
+         
+        </tr>{% endfor %}
+
+        </table>
+    </div>
+    </div>
+{% endif %}
+
+{% endblock content %}

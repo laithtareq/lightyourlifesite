@@ -1,0 +1,105 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="message">{{ message }} <i class="fas fa-check"></i> </div> <br>
+    {% endfor %}
+    {% endif %}
+    <img src="{{ user.profile.image.url }}" class="profile col-12">
+    <div class="profileInfo">
+    <a href="{% url 'profile_update' %}"> <i class="far fa-edit"></i> Update my profile </a><br>
+     اسم المستخدم : {{user.username}} <br>
+     الاسم الاول : {{user.first_name}}<br>
+     الاسم الاخير : {{user.last_name}}<br>
+     رقم التلفون : {{user.profile.phone}}<br>
+    الايميل الشخصي : {{user.profile.email}}<br>
+    </div>
+    {% if user.profile.isTeacher %}
+    <div class="col-lg-12 mr-3">
+    <div class="row">
+    <table class="col-12">
+            <th> اسم المادة </th>
+                <th> رقم الشعبة </th>
+                 <th> المدرس </th>
+                 <th> القاعة </th>
+                 <th> الايام </th>
+                 <th> من الساعة </th>
+                <th> الى الساعة </th>
+                <th> تاريخ بداية الدورة </th>
+            <th> تاريخ نهاية الدورة </th>
+                {% for sec in Sections %}
+                <tr>
+                   <td> <a href="{% url 'add_homework' sec.id %}">{{ sec.Material_Key.name }}</a> </td>
+                   <td> <a href="{% url 'add_homework' sec.id %}"> شعبة {{ sec.Section_Num }}</a> </td>
+                   <td> <a href="{% url 'add_homework' sec.id %}"> {{ sec.Teacher_Name.username }}</a> </td>
+                   <td> <a href="{% url 'add_homework' sec.id %}"> القاعة {{ sec.Section_Class }}</a> </td>
+                   <td> <a href="{% url 'add_homework' sec.id %}"> {{ sec.Days }}</a> </td>
+                   <td> <a href="{% url 'add_homework' sec.id %}"> {{ sec.start_time}}</a> </td>
+                   <td> <a href="{% url 'add_homework' sec.id %}"> {{ sec.end_time}}</a> </td>
+                   <td> <a href="{% url 'add_homework' sec.id %}"> {{ sec.start_date}}</a> </td>
+                   <td> <a href="{% url 'add_homework' sec.id %}"> {{ sec.end_date}}</a> </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% for mat in Mats %}
+            <div class="col-sm-3">
+            <a href="{% url 'add_free' mat.id %}">
+                <div class="materails col-lg-12 text-center">
+                    {{ mat.Material_Key.name }}</div></a>
+            <a href="#"><button type="button" class="btn btn-danger">مسح</button></a>
+
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+    {% elif user.profile.isStudent %}
+    <div class="col-lg-12 mr-3">
+    <div class="row">
+    <table class="col-12">
+            <th> اسم المادة </th>
+                <th> رقم الشعبة </th>
+                 <th> المدرس </th>
+                 <th> القاعة </th>
+                 <th> الايام </th>
+                 <th> من الساعة </th>
+                <th> الى الساعة </th>
+                <th> تاريخ بداية الدورة </th>
+            <th> تاريخ نهاية الدورة </th>
+                {% for sec in Sections %}
+                <tr>
+                   <td> <a href="{% url 'my_homeworks' sec.0 %}">{{ sec.5 }}</a> </td>
+                   <td> <a href="{% url 'my_homeworks' sec.0 %}"> شعبة {{ sec.6 }}</a> </td>
+                   <td> <a href="{% url 'my_homeworks' sec.0 %}"> {{ sec.4 }}</a> </td>
+                   <td> <a href="{% url 'my_homeworks' sec.0 %}"> القاعة {{ sec.7 }}</a> </td>
+                   <td> <a href="{% url 'my_homeworks' sec.0 %}"> {{ sec.1 }}</a> </td>
+                   <td> <a href="{% url 'my_homeworks' sec.0 %}"> {{ sec.2}}</a> </td>
+                   <td> <a href="{% url 'my_homeworks' sec.0 %}"> {{ sec.3}}</a> </td>
+                   <td> <a href="{% url 'my_homeworks' sec.0 %}"> {{ sec.8}}</a> </td>
+                   <td> <a href="{% url 'my_homeworks' sec.0 %}"> {{ sec.9}}</a> </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% for mat in Mats %}
+            <div class="col-sm-3">
+                <div class="materails col-lg-12 text-center">
+                    {{ mat.Material_Key.name }}</div>
+
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+    {% else %}
+        <div class="col-lg-12 mr-3">
+    <div class="row">
+        {% for mat in Mats %}
+            <div class="col-sm-3">
+                <div class="materails col-lg-12 text-center">
+                    {{ mat.0 }}</div>
+
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+    {% endif %}
+{% endblock content %}

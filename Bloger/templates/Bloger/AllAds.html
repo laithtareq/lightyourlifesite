@@ -1,0 +1,8 @@
+{% for Ad in Ads %}
+        <div class="mb-3">
+            <a href="{% url 'fillForm' Ad.Material_Key.id %}">
+                    <img src="{{ Ad.file.url }}" class="AdImg"><br><br>
+                    {{ Ad.title }}</a>
+            <p>{{Ad.text}}</p>
+        </div>
+    {% endfor %}

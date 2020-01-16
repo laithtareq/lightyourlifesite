@@ -1,0 +1,42 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+{% if user.profile.isAdmin %}
+<div class="col-lg-12 btn btn-primary text-center mb-1 mr-3 ml-3"> نتائج تعبئة النماذج </div>
+        <a class="col-lg-12 btn btn-success text-center mb-1 mr-3 ml-3" href="{% url 'AllSections' %}"> عرض جميع الشعب </a>
+        <a class="col-lg-12 btn btn-success text-center mb-1 mr-3 ml-3" href="{% url 'Paied_Students' %}"> عرض الطلاب المحاسبين فقط </a>
+        <div class="col-lg-12 mr-3 ml-3">
+
+    </div>
+{% endif %}
+<div class="card shadow col-lg-12">
+
+  <div class="card-header py-3">
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>التخصص</th>
+            <th>القسم</th>
+            <th>اسم المادة</th>
+            <th>عدد المسجلين</th>
+
+          </tr>
+        </thead>
+        <tbody>
+            {% for material in Materials %}
+          <tr>
+            <td><a href="{% url 'MatSt' material.6 %}"> {{ material.13 }}</a></td>
+            <td><a href="{% url 'MatSt' material.6 %}"> {{ material.11 }}</a></td>
+            <td><a href="{% url 'MatSt' material.6 %}"> {{ material.9 }}</a></td>
+            <td><a href="{% url 'MatSt' material.6 %}"> {{ material.0 }}</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}

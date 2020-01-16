@@ -1,0 +1,17 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+
+    <h3>Login Form</h3>
+    <div class="card col-lg-4 mr-3 ml-3" style="width: 18rem;">
+    <form method="POST">
+        {% csrf_token %}
+        <label for="username">Username </label> <br>
+        <input type="text" name="username" id="username" placeholder="Write your username"><br>
+        <label for="Password">password </label> <br>
+        <input type="password" name="password" id="password" placeholder="Write your password"><br>
+        <input type="submit" value="Login">
+    </form>
+    </div>
+    <a class="col-lg-12 btn btn-success text-center mb-1 mr-3 ml-3" href="{% url 'register' %}"> اذا لا تملك حساب يمكنك انشاء حساب جديد من هنا </a>
+{% endblock content %}

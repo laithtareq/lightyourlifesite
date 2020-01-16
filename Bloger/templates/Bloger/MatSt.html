@@ -1,0 +1,44 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+{% if user.profile.isAdmin %}
+<div class="col-lg-12 btn btn-primary text-center mb-1 mr-3 ml-3"> نتائج تعبئة النماذج </div>
+    <div class="col-lg-12 mr-3 ml-3">
+    <div class="row">
+
+            <table class="col-12">
+        <th> اسم الطالب </th>
+            <th> رقم الهاتف </th>
+            <th> الايميل\الفيسبوك </th>
+            <th> الاوقات المتاحة </th>
+            <th> المادة </th>
+            <th> موعد التسجيل </th>
+         {% for student in Students %}
+            <tr>
+        <td>
+         <a href="#"> {{ student.Student_User.first_name }} {{ student.Student_User.last_name }}</a>
+         </td>
+            <td>
+         <a href="#"> {{ student.Student_User.profile.phone }}</a>
+         </td>
+            <td>
+         <a href="#"> {{ student.Student_User.profile.email }}</a>
+         </td>
+            <td>
+         <a href="#"> {{ student.times}}</a>
+         </td>
+            <td>
+         <a href="#"> {{ mat }}</a>
+         </td>
+             <td>
+         <a href="#"> {{ student.post_date }}</a>
+         </td>
+
+        </tr>{% endfor %}
+
+        </table>
+    </div>
+    </div>
+{% endif %}
+
+{% endblock content %}

@@ -1,0 +1,82 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+{% if user.profile.isAdmin %}
+    {{ nameDelete }}
+    <div class="col-lg-12 mr-3 ml-3">
+    <div class="row">
+<div class="col-lg-12 btn btn-primary text-center mb-1"> طلاب  {{ Section_Key.Material_Key.name }} شعبة {{ Section_Key.Section_Num }} </div>
+            <table class="col-12">
+            <th> username </th>
+            <th> اسم الطالب </th>
+            <th> رقم الهاتف </th>
+            <th> الايميل\الفيسبوك </th>
+         {% for student in Students %}
+            <tr>
+        <td id="{{ student.id }}" class="section" onclick="document.getElementById('name').value=document.getElementById('{{ student.id }}').innerText;
+                document.getElementById('myForm').submit();">
+         {{ student.Student_User.username }}
+         </td>
+         <td class="section" onclick="document.getElementById('name').value=document.getElementById('{{ student.id }}').innerText;
+                document.getElementById('myForm').submit();">
+         {{ student.Student_User.first_name }} {{ student.Student_User.last_name }}
+         </td>
+            <td class="section" onclick="document.getElementById('name').value=document.getElementById('{{ student.id }}').innerText;
+                    document.getElementById('myForm').submit();">
+         {{ student.Student_User.profile.phone }}
+         </td>
+            <td class="section" onclick="document.getElementById('name').value=document.getElementById('{{ student.id }}').innerText;
+                    document.getElementById('myForm').submit();">
+         {{ student.Student_User.profile.email }}
+         </td>
+             
+
+        </tr>{% endfor %}
+
+        </table>
+    <div class="col-lg-4 mr-3">
+        <form id="myForm" method="POST" class="d-none">
+        {% csrf_token %}
+            <label for="name"> اضافة </label> <br>
+            <input type="text" name="name" id="name"><br>
+            <label for="nameDelete"> ازالة </label> <br>
+            <input type="text" name="nameDelete" id="nameDelete"><br>
+
+            <input type="submit" value="نقل">
+    </form>
+
+    </div>
+    <div class="col-lg-12 btn btn-primary text-center mb-1"> حضور {{time}} </div>
+    <table class="col-12">
+            <th> username </th>
+        <th> اسم الطالب </th>
+            <th> رقم الهاتف </th>
+            <th> الايميل\الفيسبوك </th>
+         {% for sectionStudent in SectionStudents %}
+            <tr>
+        <td id="{{ sectionStudent.id }}" class="section" onclick="document.getElementById('nameDelete').value=document.getElementById('{{ sectionStudent.id }}').innerText;
+                document.getElementById('myForm').submit();">
+         {{ sectionStudent.Student_User.username }}
+         </td>
+         <td class="section" onclick="document.getElementById('nameDelete').value=document.getElementById('{{ sectionStudent.id }}').innerText;
+                document.getElementById('myForm').submit();">
+         {{ sectionStudent.Student_User.first_name }} {{ sectionStudent.Student_User.last_name }}
+         </td>
+            <td class="section" onclick="document.getElementById('nameDelete').value=document.getElementById('{{ sectionStudent.id }}').innerText;
+                    document.getElementById('myForm').submit();">
+         {{ sectionStudent.Student_User.profile.phone }}
+         </td>
+            <td class="section" onclick="document.getElementById('nameDelete').value=document.getElementById('{{ sectionStudent.id }}').innerText;
+                    document.getElementById('myForm').submit();">
+         {{ sectionStudent.Student_User.profile.email }}
+         </td>
+            
+        </tr>{% endfor %}
+
+        </table>
+
+    </div>
+    </div>
+{% endif %}
+
+{% endblock content %}

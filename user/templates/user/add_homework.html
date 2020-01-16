@@ -1,0 +1,27 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+
+    {% if user.profile.isTeacher %}
+    <div class="col-lg-12 mr-3 ml-3">
+    <div class="row">
+    <div class="col-12">
+        {% for homework in Homeworks %}
+            <a href="{% url 'homework_detail' homework.id %}">
+                <div class="materails col-lg-12 mb-3 text-center">
+                    {{ homework.Quastion_title }}</div></a>
+        {% endfor %}
+
+    </div>
+        <div class="card col-lg-6 mr-3 ml-3" style="width: 18rem;">
+<div class="col-lg-12 btn btn-primary text-center mb-1">اضافة سؤال جديد </div>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="موافق">
+        </form>
+        </div>
+    </div>
+    </div>
+{% endif %}
+{% endblock content %}

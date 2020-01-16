@@ -1,0 +1,21 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+    {% if user.profile.isStudent %}
+
+        <div class="col-lg-12 mr-3 ml-3">
+    <div class="row">
+             <div class="col-lg-12 btn btn-primary text-center mb-1 ml-3 mr-3">{{ Answer_info.Homework_Key.Quastion_title }}<br> العلامة القصوى : {{ Answer_info.Homework_Key.Max_mark }}</div>
+            <div class="col-12">
+                <div class=" card post col-12 text-right">
+                    {{ Answer_info.Homework_Key.Quastion_text }}</div>
+            </div>
+    </div>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="Answer" id="Answer" placeholder="اكتب الجواب هنا"><br>
+            <input type="submit" value="اجابة">
+        </form>
+    </div>
+{% endif %}
+{% endblock content %}

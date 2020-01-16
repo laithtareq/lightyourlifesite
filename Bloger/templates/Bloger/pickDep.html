@@ -1,0 +1,24 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="col-lg-12 btn btn-primary text-center mb-1 mr-3 ml-3"> {{ specialty.name }} </div>
+    {% if user.profile.isAdmin %}
+    <a class="col-lg-12 btn btn-success text-center mb-1 mr-3 ml-3" href="{% url 'AddThing' 'Dep' specialty.id %}"> اضافة قسم جديد </a>
+    {% endif %}
+    <div class="col-lg-12 mr-3">
+    <div class="row">
+        {% for dep in Deps %}
+            <div class="col-sm-3">
+            <a href="{% url 'pickMat' dep.id %}">
+                <div class="materails col-lg-12 text-center">
+                    {{ dep.name }}</div></a>
+                {% if user.profile.isAdmin %}
+            <a href="{% url 'ConformDelete' 'Dep' dep.id %}"><button type="button" class="btn btn-danger">مسح</button></a>
+            {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+
+{% endblock content %}

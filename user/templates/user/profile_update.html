@@ -1,0 +1,14 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+    <div class="card col-lg-4 mr-3 ml-3" style="width: 18rem;">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {% if user.profile.isAdmin or user.profile.isTeacher or user.profile.isStudent  %}
+        {{ profile_form.as_p }}
+        {% endif %}
+    <input type="submit" value="Update">
+    </form>
+    </div>
+{% endblock content %}

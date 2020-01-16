@@ -1,0 +1,31 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+{% if user.profile.isAdmin %}
+    <div class="card col-lg-4 mr-3 ml-3" style="width: 40rem;">
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!--{{form.as_p}}-->
+        <label for="title"> عنوان الاعلان </label><br>
+       <div> {{ form.title }}</div> <br>
+        <!--
+        <label for="Specialty"> Specialty </label><br>
+        {{ form.Specialty }} <br>
+        <label for="Dep"> Dep </label><br>
+        {{ form.Dep }} <br>
+        <label for="Material"> Material </label><br>
+        {{ form.Material }} <br>
+        -->
+        <label for="text"> وصف الاعلان </label><br>
+
+        <div> {{ form.text }} </div><br>
+        <label for="expirDate"> تاريخ انتهاء الاعلان </label><br>
+        {{ form.expirDate }}<br>
+        <label for="file">صورة للاعلان</label><br>
+        <input type="file" name="file"><br>
+        <input type="submit" value="اضافة">
+    </form>
+    </div>
+{% endif %}
+{% endblock content %}

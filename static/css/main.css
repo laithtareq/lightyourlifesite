@@ -1,0 +1,223 @@
+img.header{
+  height: 100px;
+
+}
+img.AdImg{
+  height: 100px;
+  direction: rtl;
+  float: right;
+}
+.profileInfo{
+  border: solid black 1px;
+  padding: 2px 5px;
+  background-color: #f3ffbe;
+  color: black;
+  margin-bottom: 15px;
+}
+.sidebarblock{
+  border: solid black 1px;
+  padding: 2px 5px;
+  background-color: #f3ffbe;
+  color: black;
+  font-size: 18px;
+  margin-bottom: 15px;
+  min-height: 50px;
+}
+.post{
+color: blue;
+border: 1px solid green;
+}
+.materails{
+  color: blue;
+  display: block;
+  margin: 1px 1px;
+  background-color: gold;
+  border: solid black;
+  border-radius: 10px;
+  font-size: 25px;
+}
+.materails:hover{
+   background: linear-gradient(35deg, green 0%, gold 80%);
+   color: whitesmoke;
+}
+div{
+    color: red;
+}
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/Lato-Regular.ttf') format("truetype"), local('Lato');
+}
+html, body{
+    direction: rtl;
+    text-align: left;
+}
+body{
+    font-family: 'Lato';
+    font-size: 14px;
+    background-image: url('../images/backgroundBic.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+   background-size: cover;
+}
+li .mat {
+  direction: rtl;
+  text-align: left;
+  font-size: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #800103;
+  max-width: 100%;
+}
+ul.Ads{
+  float: none;
+  background-color: transparent;
+}
+li.Ads{
+  float: none;
+
+}
+ul {
+  direction: rtl;
+  text-align: right;
+  font-size: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #353580;
+  max-width: 100%;
+}
+
+li {
+  float: right;
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: right;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+[class*="col-"] {
+  text-align: left;
+  padding: 15px;
+}
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+}
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}
+input[type=text],[type=number],[type=password],[type=email],[type=time],[type=date] {
+  padding: 5px 5px;
+  box-sizing: border-box;
+  border: 1px solid #000eaf;
+  direction: rtl;
+  border-radius: 4px;
+}
+input[type=text]:focus,[type=number]:focus,[type=password]:focus,[type=email]:focus {
+border: 1px solid red;
+margin: 4px 4px;
+}
+input[type=button],input[type=submit], input[type=reset]{
+  background-color: #353580;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+table,tr,td,th {
+  border: 1px solid black;
+  border-radius: 10px;
+  text-align: center;
+}
+tr{
+  background-color: whitesmoke;
+}
+tr:hover{
+  background-color: gold;
+}
+td.section:hover{
+  cursor: pointer;
+}
+img.profile{
+  border-radius: 50%;
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 100px;
+  max-height: 100px;
+}
+img.small_profile{
+  border-radius: 16px;
+  width: 50px;
+  height: 50px;
+}

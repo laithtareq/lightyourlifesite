@@ -1,0 +1,61 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+
+    {% if user.profile.isTeacher %}
+    <a class="col-lg-12 btn btn-success text-center mb-1 mr-3 ml-3" href="{% url 'selectTeacher' mat.id %}"> تدريس </a>
+    {% endif %}
+    {% if user.profile.isAdmin %}
+        <a class="col-lg-12 btn btn-success text-center mb-1 mr-3 ml-3" href="{% url 'NewAd' mat.id %}"> اضافة اعلان جديد </a>
+    {% else %}
+    <div class="card col-lg-4 mr-3 ml-3" style="width: 18rem;">
+        <div class="col-lg-12 btn btn-primary text-center mb-1"> يرجى تعبئة نموذج التسجيل </div>
+        {{ mat }}<<{{ mat.Dep_Key.name }}<<{{ mat.Dep_Key.Specialty_Key.name }}
+            <form method="POST">
+            {% csrf_token %}
+    
+            <label for="phone">رقم الهاتف </label> <br>
+                <input type="text" name="phone" id="phone" placeholder="Write your phone" value="{{ user.profile.phone }}"><br>
+             <label for="emailOrFace">الايميل او صفحة الفيس بوك </label> <br>
+                <input type="text" name="emailOrFace" id="emailOrFace" placeholder="Write your email or facebook" value="{{ user.profile.email }}"><br>
+             <label for="times">الاوقات المناسبة </label> <br>
+                <input type="text" name="times" id="times"><br>
+                <input type="submit" value="موافق">
+        </form>
+    </div>
+        {% endif %}
+    
+    
+     {% if user.profile.isAdmin %}
+    <a class="col-lg-12 btn btn-success text-center mb-1 mr-3 ml-3" href="{% url 'AddSection' mat.id %}"> اضافة شعبة جديدة </a>
+    <div class="col-lg-12 mr-3 ml-3">
+    <div class="row">
+            <table class="col-12 ">
+                <th> رقم الشعبة </th>
+                 <th> المدرس </th>
+                 <th> القاعة </th>
+                 <th> الايام </th>
+                 <th> من الساعة </th>
+                <th> الى الساعة </th>
+                <th> تاريخ بداية الدورة </th>
+            <th> تاريخ نهاية الدورة </th>
+               {% if  sections%}
+               {% for sec in sections %}
+               <tr>
+                   <td> <a href="{% url 'EditSection' sec.id %}"> شعبة {{ sec.Section_Num }}</a> </td>
+                   <td> <a href="{% url 'EditSection' sec.id %}"> {{ sec.Teacher_Name.username }}</a> </td>
+                   <td> <a href="{% url 'EditSection' sec.id %}"> القاعة {{ sec.Section_Class }}</a> </td>
+                   <td> <a href="{% url 'EditSection' sec.id %}"> {{ sec.Days }}</a> </td>
+                   <td> <a href="{% url 'EditSection' sec.id %}"> {{ sec.start_time}}</a> </td>
+                   <td> <a href="{% url 'EditSection' sec.id %}"> {{ sec.end_time}}</a> </td>
+                   <td> <a href="{% url 'EditSection' sec.id %}"> {{ sec.start_date}}</a> </td>
+                   <td> <a href="{% url 'EditSection' sec.id %}"> {{ sec.end_date}}</a> </td>
+               </tr>
+               {% endfor %}
+               {% endif %}
+            </table>
+    </div>
+
+    </div>
+    {% endif %}
+{% endblock content %}

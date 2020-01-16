@@ -1,0 +1,24 @@
+{% extends 'Bloger/base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="col-lg-12 btn btn-primary text-center mb-1 mr-3 ml-3"> {{ dep.name }} </div>
+    {% if user.profile.isAdmin %}
+    <a class="col-lg-12 btn btn-success text-center mb-1 mr-3 ml-3" href="{% url 'AddThing' 'Mat' dep.id %}"> اضافة مادة جديدة </a>
+    {% endif %}
+    <div class="col-lg-12 mr-3">
+    <div class="row">
+        {% for material in Materials %}
+            <div class="col-sm-3">
+            <a href="{% url 'fillForm' material.id %}">
+                <div class="materails col-lg-12 text-center">
+                    {{ material.name }}</div></a>
+                {% if user.profile.isAdmin %}
+            <a href="{% url 'ConformDelete' 'Mat' material.id %}"><button type="button" class="btn btn-danger">مسح</button></a>
+            {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+
+{% endblock content %}
