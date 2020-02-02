@@ -4,16 +4,16 @@ from django.utils import timezone
 from PIL import Image
 # Create your models here.
 class Specialty(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=40)
     def __str__(self):
         return "{}".format(self.name)
 class Dep(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=40)
     Specialty_Key = models.ForeignKey(Specialty,on_delete=models.CASCADE)
     def __str__(self):
         return "{}".format(self.name)
 class Material(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=40)
     Dep_Key = models.ForeignKey(Dep,on_delete=models.CASCADE)
     def __str__(self):
         return "{}".format(self.name)
